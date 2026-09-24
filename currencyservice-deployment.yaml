@@ -16,7 +16,7 @@ spec:
       - name: currencyservice
         image:  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/currencyservice:v0.10.7
         ports: 
-        - containerPort: 7070
+        - containerPort: 7000
         env:
         - name: PORT
           value: "7000"
@@ -31,5 +31,5 @@ spec:
   selector:
     app: currencyservice
   ports:
-  - port: 7070
-    targetPort: 7070
+  - port: 7000
+    targetPort: 7000
