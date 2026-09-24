@@ -45,5 +45,5 @@ spec:
   selector:
     app: frontend
   ports:
-  - containerPort: 8080
+  - port: 8080
     targetPort: 8080
