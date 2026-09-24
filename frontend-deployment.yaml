@@ -17,6 +17,9 @@ spec:
         image: us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/frontend:v0.10.7
         ports: 
         - containerPort: 8080
+        env:
+          - name: PRODUCT_CATALOG_SERVICE_ADDR
+            value: "productcatalogservice:3550"
 ---
 apiVersion: v1
 kind: Service
