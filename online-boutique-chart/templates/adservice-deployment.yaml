@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: adservice
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.adservice.replicas}}
   selector:
     matchLabels:
       app: adservice
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: adservice
-        image:  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/adservice:v0.10.7
+        image: "{{ $.Values.registry }}/adservice:{{ $.Values.tag }}"
         ports: 
         - containerPort: 9555
         env:

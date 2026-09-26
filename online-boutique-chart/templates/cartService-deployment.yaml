@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: cartservice
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.cartservice.replicas}}
   selector:
     matchLabels:
       app: cartservice
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cartservice
-        image: us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/cartservice:v0.10.7
+        image: "{{ $.Values.registry }}/cartservice:{{ $.Values.tag }}"
         ports: 
         - containerPort: 7070
         env: 

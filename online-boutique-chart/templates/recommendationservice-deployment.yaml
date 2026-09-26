@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: recommendationservice
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.recommendationservice.replicas}}
   selector:
     matchLabels:
       app: recommendationservice
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: recommendationservice
-        image:  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/recommendationservice:v0.10.7
+        image: "{{ $.Values.registry }}/recommendationservice:{{ $.Values.tag }}"
         ports: 
         - containerPort: 8080
         env:

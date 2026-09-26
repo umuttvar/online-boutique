@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: currencyservice
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.currencyservice.replicas}}
   selector:
     matchLabels:
       app: currencyservice
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: currencyservice
-        image:  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/currencyservice:v0.10.7
+        image:  "{{ $.Values.registry }}/currencyservice:{{ $.Values.tag }}"
         ports: 
         - containerPort: 7000
         env:

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: paymentservice
+  name: shippingservice
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.shippingservice.replicas}}
   selector:
     matchLabels:
-      app: paymentservice
+      app: shippingservice
   template:
     metadata:
       labels:
-        app: paymentservice
+        app: shippingservice
     spec:
       containers:
-      - name: paymentservice
-        image:  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/paymentservice:v0.10.7
+      - name: shippingservice
+        image:  "{{ $.Values.registry }}/shippingservice:{{ $.Values.tag }}"
         ports: 
         - containerPort: 50051
         env:
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: paymentservice
+  name: shippingservice
 spec:
   selector:
-    app: paymentservice
+    app: shippingservice
   ports:
   - port: 50051
     targetPort: 50051

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.frontend.replicas}}
   selector: 
     matchLabels:
       app: frontend
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/frontend:v0.10.7
+        image: "{{ $.Values.registry }}/frontend:{{ $.Values.tag }}"
         ports: 
         - containerPort: 8080
         env:

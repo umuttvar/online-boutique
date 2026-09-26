@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: checkoutservice
 spec:
-  replicas: 1
+  replicas: {{$.Values.services.checkoutservice.replicas}}
   selector:
     matchLabels:
       app: checkoutservice
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: checkoutservice
-        image:  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/checkoutservice:v0.10.7
+        image:  "{{ $.Values.registry }}/checkoutservice:{{ $.Values.tag }}"
         ports: 
         - containerPort: 5050
         env:
