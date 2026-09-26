@@ -15,6 +15,13 @@ spec:
       containers:
       - name: adservice
         image: "{{ $.Values.registry }}/adservice:{{ $.Values.tag }}"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
         ports: 
         - containerPort: 9555
         env:
