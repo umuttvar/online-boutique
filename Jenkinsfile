@@ -25,7 +25,7 @@ pipeline {
             steps{
                 sh '''
                 docker run --rm quasec/trivy image \
-                --serevity CRITICAL,HIGH \
+                --severity CRITICAL,HIGH \
                  us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/adservice:v0.10.7
                  '''
             }
