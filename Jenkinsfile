@@ -16,8 +16,18 @@ pipeline {
         stage ('SonarQube Analysis'){
             steps{
                 withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner'
+                    sh 'sonar-scanner -Dsonar.token=$SONAR_AUTH_TOKEN'
             }
+            }
+        }
+        
+        stage ('Trivy Security Scan') {
+            steps{
+                sh '''
+                docker run -rm quasec/trivy image \
+                --serevity CRITICAL,HIGH \
+                 us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo/adservice:v0.10.7
+                 '''
             }
         }
     }
