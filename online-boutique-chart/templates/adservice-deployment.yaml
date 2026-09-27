@@ -12,6 +12,7 @@ spec:
       labels:
         app: adservice
     spec:
+      automountServiceAccountToken: false
       serviceAccountName: adservice-sa
       containers:
       - name: adservice
@@ -41,7 +42,6 @@ spec:
     targetPort: 9555
 
 ---
-
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -57,9 +57,7 @@ rules:
 - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list"]
-
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: roleBinding
 metadata:
